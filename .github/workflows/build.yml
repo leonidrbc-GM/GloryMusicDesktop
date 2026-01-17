@@ -1,33 +1,44 @@
-name: Build EXE from JAR
+name: Build Windows EXE
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:  # Ручной запуск
+  push:
+    tags:
+      - 'v*'  # При создании тега
 
 jobs:
-  build:
-    runs-on: windows-latest
+  build-windows:
+    runs-on: windows-latest  # ВАЖНО: Windows сервер!
     
     steps:
     - uses: actions/checkout@v4
     
-    - uses: actions/setup-java@v4
+    - name: Setup Java
+      uses: actions/setup-java@v4
       with:
+        distribution: 'temurin'
         java-version: '17'
     
-    # Прямое создание EXE из JAR
-    - name: Create EXE
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+    
+    # Создаем иконку если нет (опционально)
+    - name: Create placeholder icon if missing
       run: |
-        # Проверяем какие JAR файлы есть
-        Get-ChildItem -Recurse -Filter "*.jar" | Select-Object -First 1
-        
-        # Создаем EXE (самая простая команда)
-        jpackage `
-          --name GloryMusic `
-          --input . `
-          --main-jar GloryMusic.jar `
-          --type exe `
-          --app-version 1.0.0
-      
-    - uses: actions/upload-artifact@v4
+        if not exist gm_icon.ico (
+          echo "Creating placeholder icon..."
+          # Можно создать простую иконку или пропустить
+        )
+    
+    - name: Build with Gradle
+      run: gradlew.bat packageExeDistributionForCurrentOS
+    
+    - name: List created files
+      run: dir /s /b *.exe || echo "No EXE files found"
+    
+    - name: Upload EXE artifact
+      uses: actions/upload-artifact@v4
       with:
-        name: EXE-File
-        path: GloryMusic*.exe
+        name: GloryMusic-Windows
+        path: build/compose/binaries/main/exe/*.exe
+        retention-days: 7
