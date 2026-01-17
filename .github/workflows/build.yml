@@ -1,24 +1,25 @@
-name: Windows EXE Builder
+name: Build Windows EXE
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    tags:
+      - 'v*'
 
 jobs:
   build:
     runs-on: windows-latest
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
-    - uses: actions/setup-java@v3
+    - uses: actions/setup-java@v4
       with:
         java-version: '17'
+        distribution: 'temurin'
         
-    - run: ./gradlew buildExe
+    - run: ./gradlew packageExeDistributionForCurrentOS
       
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
-        name: GloryMusic
+        name: GloryMusic-EXE
         path: build/compose/binaries/main/exe/*.exe
