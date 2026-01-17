@@ -12,12 +12,15 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - uses: actions/setup-java@v4
+    # Указываем конкретную Java для Windows
+    - name: Setup Java 17 for Windows
+      uses: actions/setup-java@v4
       with:
         java-version: '17'
-        distribution: 'temurin'
+        distribution: 'microsoft'  # Используем Microsoft JDK для Windows
         
-    - run: ./gradlew packageExeDistributionForCurrentOS
+    - name: Build EXE
+      run: gradlew.bat packageExeDistributionForCurrentOS  # Используем .bat для Windows
       
     - uses: actions/upload-artifact@v4
       with:
