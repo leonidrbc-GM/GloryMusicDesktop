@@ -5,6 +5,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun App() {
@@ -51,9 +52,13 @@ fun App() {
             size = if (screenBounds != null) {
                 DpSize(screenBounds.width.dp, screenBounds.height.dp)
             } else {
-                DpSize(1000.dp, 700.dp)
+                DpSize(1000.dp, 700.dp) // если второй экран не обнаружен то второе окно с таким размером
             }
         )
+
+        // Скалирование шрифта в зависимости от размера окна
+        val largeScaleFactor = if (windowState.size.width > 1200.dp) 1.5f else 1f
+        val scaledFontSize = 24.sp * largeScaleFactor
 
         Window(
             onCloseRequest = {

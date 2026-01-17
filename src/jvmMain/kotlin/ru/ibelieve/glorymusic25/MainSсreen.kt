@@ -19,8 +19,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-//import com.google.accompanist.flowlayout.FlowRow
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,7 +30,8 @@ fun MainScreen(
     onNext: () -> Unit,
     onPrev: () -> Unit,
     onStop: () -> Unit,
-    onNavigateToPlayer: (Int, PlayMode) -> Unit
+    onNavigateToPlayer: (Int, PlayMode) -> Unit,
+    playerButtonsEnabled: Pair<Boolean, Boolean>? = null // Параметром передается доступность кнопок
 ) {
     val allSongs = remember { FileLogic.loadSongs() }
     val favorites = remember {
@@ -46,19 +45,21 @@ fun MainScreen(
     var selectedSongId by remember { mutableStateOf(-1) }
     var currentAvailability by remember { mutableStateOf(SongAvailability(false, false, false)) }
 
+    // Запоминаем текущий индекс фрагмента
+    var currentIndex by remember { mutableStateOf(0) }
+
     val categories = listOf("МОЛИТВА", "ПОКЛОНЕНИЕ", "ВЕРУЮ", "РОЖДЕСТВО", "ПАСХА", "ЗАПОВЕДЬ", "ИЗБРАННОЕ", "ДЕТИ", "ВСЕ")
     val lazyListState = rememberLazyListState()
 
     Column(modifier = Modifier.fillMaxSize().background(Color(0xFFF5F5F5))) {
 
-        // Верхний заголовок с вашей иконкой
+        // Верхний заголовок с иконкой
         TopAppBar(title = {
             Row(
-                horizontalArrangement = Arrangement.Center, // Центрируем содержимое по горизонтали
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth() // Заголовок занимает всю ширину
+                modifier = Modifier.fillMaxWidth()
             ) {
-                // Используем прямую загрузку иконки
                 Image(
                     painter = painterResource(resourcePath = "icons/gm_icon.png"),
                     contentDescription = "Главная иконка"
@@ -68,20 +69,32 @@ fun MainScreen(
             }
         })
 
-        // категории песнопений
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        // Категории песнопений (разделены на две строки)
+        Column(
             modifier = Modifier
-                //.border(BorderStroke(1.dp, Color.Green))
                 .fillMaxWidth()
                 .padding(8.dp)
         ) {
-            categories.forEach { category ->
-                FilterChip(
-                    selected = selectedCategory == category,
-                    onClick = { selectedCategory = category },
-                    label = { Text(category) }
-                )
+            // Первая строка (первая четверка кнопок)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                categories.take(4).forEach { category ->
+                    FilterChip(
+                        selected = selectedCategory == category,
+                        onClick = { selectedCategory = category },
+                        label = { Text(category) }
+                    )
+                }
+            }
+
+            // Вторая строка (оставшиеся пять кнопок)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                categories.drop(4).forEach { category ->
+                    FilterChip(
+                        selected = selectedCategory == category,
+                        onClick = { selectedCategory = category },
+                        label = { Text(category) }
+                    )
+                }
             }
         }
 
@@ -130,7 +143,7 @@ fun MainScreen(
             )
         }
 
-        // ПАНЕЛЬ УПРАВЛЕНИЯ (меняется при воспроизведении)
+        // Панель управления (меняется при воспроизведении)
         Surface(modifier = Modifier.fillMaxWidth(), shadowElevation = 12.dp, color = MaterialTheme.colorScheme.surface) {
             Row(
                 modifier = Modifier.padding(16.dp).fillMaxWidth(),
@@ -138,25 +151,53 @@ fun MainScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (!isPlayerActive) {
-                    // выбор режима воспроизведения
+                    // Выбор режима воспроизведения
                     ModeButton("PLUS", currentAvailability.hasPlus) { onNavigateToPlayer(selectedSongId, PlayMode.PLUS) }
                     ModeButton("MINUS", currentAvailability.hasMinus) { onNavigateToPlayer(selectedSongId, PlayMode.MINUS) }
                     ModeButton("TEXT", currentAvailability.hasText) { onNavigateToPlayer(selectedSongId, PlayMode.TEXT) }
                 } else {
-                    // управление воспроизведением
+                    // Управление воспроизведением
                     if (mode == PlayMode.TEXT) {
-                        // режим текста
-                        Button(onClick = onPrev, colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray)) {
+                        // Получаем список фрагментов текста песни
+                        val rawText = remember(selectedSongId) { FileLogic.getSongTextRaw(selectedSongId) }
+                        val fragments = remember(rawText) { parseSongText(rawText) }
+
+                        // Проверяем возможность перехода назад и вперёд
+                        val canGoBack = currentIndex > 0
+                        val canGoForward = currentIndex < fragments.size - 1 && !fragments.getOrNull(currentIndex)?.text?.endsWith("+")!!
+
+                        // Кнопки управления текстом
+                        Button(
+                            onClick = {
+                                if (canGoBack) {
+                                    currentIndex--
+                                    onPrev()
+                                }
+                            },
+                            colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray),
+                            enabled = canGoBack
+                        ) {
                             Text("Назад")
                         }
-                        Button(onClick = onNext, colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray)) {
+
+                        Button(
+                            onClick = {
+                                if (canGoForward) {
+                                    currentIndex++
+                                    onNext()
+                                }
+                            },
+                            colors = ButtonDefaults.buttonColors(containerColor = Color.DarkGray),
+                            enabled = canGoForward
+                        ) {
                             Text("Вперед")
                         }
+
                         Button(onClick = onStop, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFB71C1C))) {
                             Text("Стоп")
                         }
                     } else {
-                        // режим PLUS/MINUS
+                        // Режимы PLUS/MINUS
                         Button(onClick = onTogglePlay, modifier = Modifier.width(150.dp)) {
                             Text(if (isPlaying) "Пауза" else "Играть")
                         }
@@ -175,7 +216,7 @@ fun SongRow(song: Song, isSelected: Boolean, isFavorite: Boolean, onSelect: () -
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 2.dp) // Расстояние между строками уменьшено на 50%
+            .padding(vertical = 2.dp)
             .background(
                 color = if (isSelected) MaterialTheme.colorScheme.primaryContainer else Color.White,
                 shape = RoundedCornerShape(8.dp)

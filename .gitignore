@@ -1,19 +1,20 @@
+# Файлы сборки
+production/
+build/
+.gradle/
+
+# Файлы IDE
+.idea/
 *.iml
-.kotlin
-.gradle
-**/build/
-xcuserdata
-!src/**/build/
-local.properties
-.idea
+*.ipr
+*.iws
+
+# Системные файлы
 .DS_Store
-captures
-.externalNativeBuild
-.cxx
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
-!*.xcodeproj/project.xcworkspace/
-!*.xcworkspace/contents.xcworkspacedata
-**/xcshareddata/WorkspaceSettings.xcsettings
-node_modules/
+Thumbs.db
+
+# Временные файлы
+*.tmp
+*.temp
+/music_data/
+production/

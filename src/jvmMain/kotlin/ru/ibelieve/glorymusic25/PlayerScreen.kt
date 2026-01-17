@@ -11,6 +11,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.*
 import kotlinx.coroutines.delay
+import java.awt.Toolkit
+import kotlin.math.min
 
 @Composable
 fun PlayerScreen(
@@ -32,14 +34,9 @@ fun PlayerScreen(
     LaunchedEffect(isPlaying, mode) {
         if (mode != PlayMode.TEXT) {
             if (isPlaying) {
-                // Проверка и получение пути к файлу
                 val path = FileLogic.getAudioFilePath(songId, mode)
-                println("Получили путь к файлу: $path") // Логирование
-
                 if (path != null) {
                     AudioPlayer.play(path)
-                } else {
-                    println("Файл не найден!") // Сообщение о невозможности найти файл
                 }
             } else {
                 AudioPlayer.pause()
@@ -47,7 +44,7 @@ fun PlayerScreen(
         }
     }
 
-    // авто-прокрутка текста по таймеру (для PLUS/MINUS)
+    // Авто-прокрутка текста по таймеру (для PLUS/MINUS)
     LaunchedEffect(isPlaying, mode, currentIndex) {
         if (isPlaying && mode != PlayMode.TEXT) {
             while (true) {
@@ -66,17 +63,41 @@ fun PlayerScreen(
         }
     }
 
-    // отображение текста на экране
-    Box(modifier = Modifier.fillMaxSize().background(Color.Black).padding(40.dp), contentAlignment = Alignment.Center) {
+    // ---- НАША НОВАЯ АДАПТИВНАЯ ЧАСТЬ ----
+    // Получаем размеры экрана с помощью Toolkit (JVM)
+    // Получаем размеры экрана с помощью Toolkit (JVM)
+    val screenSize = Toolkit.getDefaultToolkit().screenSize
+    val width = screenSize.width.toFloat()
+    val height = screenSize.height.toFloat()
+    val minDimension = if (width < height) width else height
+
+// Рассчитываем размер шрифта в SP (сначала как Float)
+    val fontSizeSpValue = minDimension * 0.08f
+    val clampedFontSizeSpValue = if (fontSizeSpValue < 120f) fontSizeSpValue else 120f
+    val fontSize = clampedFontSizeSpValue.sp
+
+// Properly calculate line height as plain float value (multiplier 1.5)
+    val lineHeightValue = clampedFontSizeSpValue * 1.5f
+
+// Отображение текста на экране
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black)
+            .padding(horizontal = 40.dp),
+        contentAlignment = Alignment.Center
+    ) {
         Text(
             text = fragments.getOrNull(currentIndex)?.text ?: "",
-            fontSize = 90.sp,
+            fontSize = fontSize,
             fontWeight = FontWeight.Bold,
             color = Color.White,
             textAlign = TextAlign.Center,
-            lineHeight = 120.sp
+            lineHeight = lineHeightValue.sp, // Передача в sp
+            modifier = Modifier.padding(horizontal = 20.dp)
         )
     }
+
 }
 
 fun parseSongText(raw: String): List<SongFragment> {

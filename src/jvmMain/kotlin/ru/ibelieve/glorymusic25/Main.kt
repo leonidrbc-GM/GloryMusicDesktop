@@ -6,7 +6,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 
 public fun main(): Unit = application {
-    val state = rememberWindowState(width = 1200.dp, height = 800.dp)
+    val state = rememberWindowState(width = 600.dp, height = 800.dp) // первоначальный размер окна
 
     Window(
         onCloseRequest = ::exitApplication,

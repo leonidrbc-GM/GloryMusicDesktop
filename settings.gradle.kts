@@ -1,3 +1,4 @@
+// settings.gradle.kts - ВЕРНИТЕ К ИСХОДНОМУ ВИДУ
 rootProject.name = "GloryMusic"
 
 pluginManagement {
@@ -9,7 +10,6 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-    // Эта строка разрешает искать репозитории в build.gradle.kts
     repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
         google()
