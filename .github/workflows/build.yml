@@ -1,10 +1,6 @@
 name: Build Windows EXE
 
-on:
-  push:
-    tags:
-      - 'v*'
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
   build:
@@ -19,15 +15,10 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
     
-    # Проверяем, что файл существует
-    - name: Check gradlew.bat
-      run: |
-        dir gradlew.bat
-        echo "File exists, proceeding..."
-    
-    # Используем правильную команду
+    # Используем cmd shell для .bat файла
     - name: Build EXE
-      run: .\gradlew.bat packageExeDistributionForCurrentOS --no-daemon
+      shell: cmd
+      run: gradlew.bat packageExeDistributionForCurrentOS
     
     - name: Upload EXE
       uses: actions/upload-artifact@v4
