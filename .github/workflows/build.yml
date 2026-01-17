@@ -1,28 +1,33 @@
 name: Build Windows EXE
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:  # Только ручной запуск
 
 jobs:
   build:
     runs-on: windows-latest
     
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
     
-    # Указываем конкретную Java для Windows
-    - name: Setup Java 17 for Windows
+    - name: Setup Java (Windows)
       uses: actions/setup-java@v4
       with:
+        distribution: 'zulu'  # Zulu работает стабильно
         java-version: '17'
-        distribution: 'microsoft'  # Используем Microsoft JDK для Windows
-        
-    - name: Build EXE
-      run: gradlew.bat packageExeDistributionForCurrentOS  # Используем .bat для Windows
-      
-    - uses: actions/upload-artifact@v4
+    
+    - name: Build with Gradle
+      run: |
+        # Явно указываем использовать Gradle wrapper
+        if exist gradlew.bat (
+          call gradlew.bat packageExeDistributionForCurrentOS
+        ) else (
+          gradle packageExeDistributionForCurrentOS
+        )
+    
+    - name: Upload EXE
+      uses: actions/upload-artifact@v4
       with:
-        name: GloryMusic-EXE
+        name: GloryMusic-Windows
         path: build/compose/binaries/main/exe/*.exe
