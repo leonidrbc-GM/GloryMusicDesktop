@@ -1,0 +1,199 @@
+Initialized native services in: /home/leonid/.gradle/native
+Initialized jansi services in: /home/leonid/.gradle/native
+The client will now receive all logging from the daemon (pid: 5940). The daemon log file: /home/leonid/.gradle/daemon/9.2.1/daemon-5940.out.log
+Starting 15th build in daemon [uptime: 2 hrs 41 mins 55.972 secs, performance: 100%, GC rate: 0.00/s, heap usage: 0% of 3 GiB]
+Using 2 worker leases.
+Operational build model parameters: {requiresToolingModels=false, parallelProjectExecution=false, configureOnDemand=false, configurationCache=true, configurationCacheParallelStore=false, configurationCacheParallelLoad=true, isolatedProjects=false, parallelProjectConfiguration=false, intermediateModelCache=false, parallelToolingApiActions=false, invalidateCoupledProjects=false, modelAsProjectDependency=false, resilientModelBuilding=false}
+Encryption key source: default Gradle keystore (pkcs12)
+Now considering [/home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject] as hierarchies to watch
+Calculating task graph as configuration cache cannot be reused because file 'build.gradle.kts' has changed.
+Now considering [/home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+Settings evaluated using settings file '/home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/settings.gradle.kts'.
+Using local directory build cache for the root build (location = /home/leonid/.gradle/caches/build-cache-1, remove unused entries = after 7 days).
+Projects loaded. Root project using build file '/home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build.gradle.kts'.
+Included projects: [root project 'GloryMusic']
+
+> Configure project :
+Evaluating root project 'GloryMusic' using build file '/home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build.gradle.kts'.
+Resolved plugin [id: 'org.jetbrains.kotlin.jvm', version: '2.1.0']
+Resolved plugin [id: 'org.jetbrains.compose', version: '1.7.3']
+Resolved plugin [id: 'org.jetbrains.kotlin.plugin.compose', version: '2.1.0']
+Using Kotlin Gradle Plugin gradle85 variant
+kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+Configure java-only compose resources
+Configure compose resources generation
+Configure Res class generation for main
+Configure resource accessors generation for main
+Configure resource accessors generation for test
+Configure actual resource collectors generation for main
+Configure main resources for '' target
+Configure test resources for '' target
+Check that new 'org.jetbrains.kotlin.plugin.compose' was applied
+All projects evaluated.
+Task name matched 'packageExe'
+Selected primary task 'packageExe' from project :
+Path for java installation '/usr/lib/jvm/openjdk-17' (Common Linux Locations) auto-detected does not contain a java executable
+Path for java installation '/usr/lib/jvm/openjdk-11' (Common Linux Locations) auto-detected does not contain a java executable
+Tasks to be executed: [task ':checkRuntime', task ':checkKotlinGradlePluginConfigurationErrors', task ':convertXmlValueResourcesForMain', task ':copyNonXmlValueResourcesForMain', task ':prepareComposeResourcesTaskForMain', task ':generateResourceAccessorsForMain', task ':generateActualResourceCollectorsForMain', task ':generateComposeResClass', task ':compileKotlin', task ':compileJava', task ':assembleMainResources', task ':processResources', task ':classes', task ':createRuntimeImage', task ':jar', task ':prepareAppResources', task ':unpackDefaultComposeDesktopJvmApplicationResources', task ':packageExe']
+Tasks that were excluded: []
+Using local directory build cache for the root build (location = /home/leonid/.gradle/caches/build-cache-1, remove unused entries = after 7 days).
+Ignoring listeners of task graph ready event, as this build (:) has already executed work.
+Resolve mutations for :checkRuntime (Thread[included builds,5,main]) started.
+:checkRuntime (Thread[included builds,5,main]) started.
+Resolve mutations for :checkKotlinGradlePluginConfigurationErrors (Thread[Execution worker,5,main]) started.
+:checkKotlinGradlePluginConfigurationErrors (Thread[Execution worker,5,main]) started.
+
+> Task :checkKotlinGradlePluginConfigurationErrors SKIPPED
+Skipping task ':checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+Resolve mutations for :convertXmlValueResourcesForMain (Thread[Execution worker,5,main]) started.
+:convertXmlValueResourcesForMain (Thread[Execution worker,5,main]) started.
+
+> Task :convertXmlValueResourcesForMain NO-SOURCE
+file or directory '/home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/preparedResources/main/composeResources', not found
+Skipping task ':convertXmlValueResourcesForMain' as it has no source files and no previous output files.
+Resolve mutations for :copyNonXmlValueResourcesForMain (Thread[Execution worker,5,main]) started.
+:copyNonXmlValueResourcesForMain (Thread[Execution worker,5,main]) started.
+
+> Task :copyNonXmlValueResourcesForMain NO-SOURCE
+file or directory '/home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/preparedResources/main/composeResources', not found
+Skipping task ':copyNonXmlValueResourcesForMain' as it has no source files and no previous output files.
+Resolve mutations for :prepareComposeResourcesTaskForMain (Thread[Execution worker,5,main]) started.
+:prepareComposeResourcesTaskForMain (Thread[Execution worker,5,main]) started.
+
+> Task :prepareComposeResourcesTaskForMain NO-SOURCE
+Skipping task ':prepareComposeResourcesTaskForMain' as it has no source files and no previous output files.
+Resolve mutations for :generateResourceAccessorsForMain (Thread[Execution worker,5,main]) started.
+:generateResourceAccessorsForMain (Thread[Execution worker,5,main]) started.
+
+> Task :checkRuntime FROM-CACHE
+Build cache key for task ':checkRuntime' is bc1ae3671a9415de11a3cf3280e50407
+Task ':checkRuntime' is not up-to-date because:
+  Output property 'javaRuntimePropertiesFile' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/compose/tmp/checkRuntime/properties.bin has been removed.
+Loaded cache entry for task ':checkRuntime' with cache key bc1ae3671a9415de11a3cf3280e50407
+
+> Task :generateResourceAccessorsForMain NO-SOURCE
+Skipping task ':generateResourceAccessorsForMain' as it has no source files and no previous output files.
+Resolve mutations for :generateComposeResClass (Thread[included builds,5,main]) started.
+:generateComposeResClass (Thread[included builds,5,main]) started.
+Resolve mutations for :generateActualResourceCollectorsForMain (Thread[Execution worker,5,main]) started.
+:generateActualResourceCollectorsForMain (Thread[Execution worker,5,main]) started.
+
+> Task :generateComposeResClass
+Caching disabled for task ':generateComposeResClass' because:
+  Caching has not been enabled for the task
+Task ':generateComposeResClass' is not up-to-date because:
+  Output property 'codeDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/kotlin/commonResClass has been removed.
+  Output property 'codeDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/kotlin/commonResClass/ru has been removed.
+  Output property 'codeDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/kotlin/commonResClass/ru/ibelieve has been removed.
+  and more...
+Generate Res.kt
+Resolve mutations for :assembleMainResources (Thread[included builds,5,main]) started.
+:assembleMainResources (Thread[included builds,5,main]) started.
+
+> Task :generateActualResourceCollectorsForMain
+Caching disabled for task ':generateActualResourceCollectorsForMain' because:
+  Caching has not been enabled for the task
+Task ':generateActualResourceCollectorsForMain' is not up-to-date because:
+  Output property 'codeDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/kotlin/mainResourceCollectors has been removed.
+  Output property 'codeDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/kotlin/mainResourceCollectors/ru has been removed.
+  Output property 'codeDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/kotlin/mainResourceCollectors/ru/ibelieve has been removed.
+  and more...
+Clean directory /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/kotlin/mainResourceCollectors
+Generate actual ResourceCollectors for /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/kotlin/mainResourceCollectors
+Resolve mutations for :compileKotlin (Thread[Execution worker,5,main]) started.
+:compileKotlin (Thread[Execution worker,5,main]) started.
+
+> Task :assembleMainResources
+Caching disabled for task ':assembleMainResources' because:
+  There is no logic, just copy files
+Task ':assembleMainResources' is not up-to-date because:
+  Output property 'outputDirectory' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/assembledResources/Main has been removed.
+  Output property 'outputDirectory' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/assembledResources/Main/composeResources has been removed.
+  Output property 'outputDirectory' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/assembledResources/Main/composeResources/ru.ibelieve.glorymusic25.glorymusic.generated.resources has been removed.
+file or directory '/home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/generated/compose/resourceGenerator/preparedResources/main/composeResources', not found
+Resolve mutations for :processResources (Thread[included builds,5,main]) started.
+:processResources (Thread[included builds,5,main]) started.
+
+> Task :processResources
+Caching disabled for task ':processResources' because:
+  Not worth caching
+Task ':processResources' is not up-to-date because:
+  Output property 'destinationDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/resources/main has been removed.
+  Output property 'destinationDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/resources/main/composeResources has been removed.
+  Output property 'destinationDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/resources/main/composeResources/ru.ibelieve.glorymusic25.glorymusic.generated.resources has been removed.
+  and more...
+file or directory '/home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/src/main/resources', not found
+Resolve mutations for :createRuntimeImage (Thread[included builds,5,main]) started.
+:createRuntimeImage (Thread[included builds,5,main]) started.
+
+> Task :compileKotlin FROM-CACHE
+Build cache key for task ':compileKotlin' is 9a24b712691c1ea89035ef596f49e73c
+Task ':compileKotlin' is not up-to-date because:
+  Output property 'classpathSnapshotProperties.classpathSnapshotDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/kotlin/compileKotlin/classpath-snapshot has been removed.
+  Output property 'classpathSnapshotProperties.classpathSnapshotDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/kotlin/compileKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin has been removed.
+  Output property 'destinationDirectory' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/classes/kotlin/main has been removed.
+  and more...
+Loaded cache entry for task ':compileKotlin' with cache key 9a24b712691c1ea89035ef596f49e73c
+Resolve mutations for :compileJava (Thread[Execution worker,5,main]) started.
+:compileJava (Thread[Execution worker,5,main]) started.
+
+> Task :compileJava NO-SOURCE
+Skipping task ':compileJava' as it has no source files and no previous output files.
+Resolve mutations for :classes (Thread[Execution worker,5,main]) started.
+:classes (Thread[Execution worker,5,main]) started.
+
+> Task :classes
+Skipping task ':classes' as it has no actions.
+Resolve mutations for :jar (Thread[Execution worker,5,main]) started.
+:jar (Thread[Execution worker,5,main]) started.
+
+> Task :jar
+Caching disabled for task ':jar' because:
+  Not worth caching
+Task ':jar' is not up-to-date because:
+  Output property 'archiveFile' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/libs/GloryMusic-1.0-SNAPSHOT.jar has been removed.
+file or directory '/home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/classes/java/main', not found
+Resolve mutations for :prepareAppResources (Thread[Execution worker,5,main]) started.
+:prepareAppResources (Thread[Execution worker,5,main]) started.
+
+> Task :prepareAppResources NO-SOURCE
+Skipping task ':prepareAppResources' as it has no source files and no previous output files.
+Resolve mutations for :unpackDefaultComposeDesktopJvmApplicationResources (Thread[Execution worker,5,main]) started.
+:unpackDefaultComposeDesktopJvmApplicationResources (Thread[Execution worker,5,main]) started.
+
+> Task :unpackDefaultComposeDesktopJvmApplicationResources
+Caching disabled for task ':unpackDefaultComposeDesktopJvmApplicationResources' because:
+  Caching has not been enabled for the task
+Task ':unpackDefaultComposeDesktopJvmApplicationResources' is not up-to-date because:
+  Output property 'destinationDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/compose/default-resources/1.7.3 has been removed.
+  Output property 'destinationDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/compose/default-resources/1.7.3/default-compose-desktop-rules.pro has been removed.
+  Output property 'destinationDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/compose/default-resources/1.7.3/default-entitlements.plist has been removed.
+  and more...
+
+> Task :createRuntimeImage
+Caching disabled for task ':createRuntimeImage' because:
+  Caching has not been enabled for the task
+Task ':createRuntimeImage' is not up-to-date because:
+  Output property 'destinationDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/compose/tmp/main/runtime has been removed.
+  Output property 'destinationDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/compose/tmp/main/runtime/conf has been removed.
+  Output property 'destinationDir' file /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/compose/tmp/main/runtime/conf/logging.properties has been removed.
+  and more...
+The input changes require a full rebuild for incremental task ':createRuntimeImage'.
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-amd64/bin/jlink''. Working directory: /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject Command: /usr/lib/jvm/java-17-openjdk-amd64/bin/jlink @/home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/compose/tmp/createRuntimeImage.args.txt
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-amd64/bin/jlink''
+Resolve mutations for :packageExe (Thread[Execution worker,5,main]) started.
+:packageExe (Thread[Execution worker,5,main]) started.
+
+> Task :packageExe SKIPPED
+Skipping task ':packageExe' as task onlyIf 'Task is enabled' is false.
+
+See the complete report at file:///home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/build/reports/configuration-cache/c1ch1rrgg5velx594ztxn3t7f/3ay3dubwop9cyl0v9ik8y7vz0/configuration-cache-report.html
+
+BUILD SUCCESSFUL in 9s
+9 actionable tasks: 7 executed, 2 from cache
+Configuration cache entry stored.
+Configuration Cache (/home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/.gradle/configuration-cache) [subdir: /home/leonid/AndroidStudioProjects/GloryMusicDT/KotlinProject/.gradle/configuration-cache/49c3cd47-ba34-4384-b254-9d621f5f6c3f] cleanup deleted 8 files/directories.
